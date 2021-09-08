@@ -8,10 +8,13 @@ using UnityEngine;
 
 public class AndroidNotificationHandler : MonoBehaviour
 {
+    int LastNotification;
 #if UNITY_ANDROID
     private const string ChannelId = "notification_channel";
    public void ScheduleNotification(DateTime dateTime)
     {
+        AndroidNotificationCenter.CancelAllNotifications();
+        //AndroidNotificationCenter.CancelScheduledNotification(LastNotification);
         AndroidNotificationChannel notificationChannel = new AndroidNotificationChannel
         {
             Id = ChannelId,
@@ -30,7 +33,8 @@ public class AndroidNotificationHandler : MonoBehaviour
             LargeIcon = "default",
             FireTime = dateTime
         };
-        AndroidNotificationCenter.SendNotification(notification, ChannelId);
+        LastNotification = AndroidNotificationCenter.SendNotification(notification, ChannelId);
+        
     }
 #endif
 }

@@ -7,7 +7,7 @@ public class MainMenuNumberTextDisplayer : MonoBehaviour
 {
     private TextMeshProUGUI text;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         text = GetComponent<TextMeshProUGUI>();
         if (transform.tag == "HighScore")
@@ -16,7 +16,7 @@ public class MainMenuNumberTextDisplayer : MonoBehaviour
         }
         if (transform.tag == "Fuel")
         {
-            text.text = PlayerPrefs.GetInt(GameController.EnergyKey, 0).ToString();
+            text.text = PlayerPrefs.GetInt(GameController.EnergyKey, 3).ToString();
         }
 
     }
@@ -26,7 +26,7 @@ public class MainMenuNumberTextDisplayer : MonoBehaviour
     {
         if (transform.tag == "Fuel")
         {
-            text.text = PlayerPrefs.GetInt(GameController.EnergyKey, 0).ToString();
+            text.text = PlayerPrefs.GetInt(GameController.EnergyKey, 3).ToString();
         }
     }
 }

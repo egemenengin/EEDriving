@@ -82,7 +82,7 @@ public class GameController : MonoBehaviour
             DateTime energyReady = DateTime.Now.AddMinutes(energyRechargeDuration);
             PlayerPrefs.SetString(EnergyReadyKey,energyReady.ToString());
 #if UNITY_ANDROID
-            GetComponent<AndroidNotificationHandler>().ScheduleNotification(DateTime.Now.AddMinutes(energyRechargeDuration*usedEnergy));
+            GetComponent<AndroidNotificationHandler>().ScheduleNotification(energyReady.AddMinutes((energyRechargeDuration*usedEnergy)));
 #endif
 #if UNITY_IOS
             GetComponent<IOSNotificationHandler>().ScheduleNotification(energyRechargeDuration);
