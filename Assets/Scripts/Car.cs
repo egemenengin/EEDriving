@@ -8,6 +8,9 @@ public class Car : MonoBehaviour
     [SerializeField] private float speedOfCar = 10f;
     [SerializeField] private float acceleration = 0.25f;
     [SerializeField] private float turnSpeed = 200f;
+
+    float waitTime = 2;
+
     private int steerValue;
     // Start is called before the first frame update
     void Start()
@@ -30,11 +33,21 @@ public class Car : MonoBehaviour
     {
         if (other.CompareTag("Obstacle"))
         {
-            SceneManager.LoadScene("Scene_MainMenu");
-            speedOfCar = 0f;
-            acceleration = 0f;
+            FindObjectOfType<Canvas>().transform.Find("WarningText").gameObject.SetActive(true);
+            StartCoroutine(gameOver());
+
+            //FindObjectOfType<Canvas>().transform.Find("Left").gameObject.SetActive(false);
+            //FindObjectOfType<Canvas>().transform.Find("Right").gameObject.SetActive(false);
+            //speedOfCar = 0f;
+            //acceleration = 0f;
         }
        
+    }
+    private IEnumerator gameOver()
+    {
+        
+        yield return new WaitForSeconds(waitTime);
+        SceneManager.LoadScene("Scene_MainMenu");
     }
     public void Steer(int value)
     {
