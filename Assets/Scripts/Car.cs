@@ -5,16 +5,17 @@ using UnityEngine.SceneManagement;
 
 public class Car : MonoBehaviour
 {
-    [SerializeField] private float speedOfCar = 10f;
+    [SerializeField] private float speedOfCar = 30f;
     [SerializeField] private float acceleration = 0.25f;
     [SerializeField] private float turnSpeed = 200f;
-
+    private bool crushed = false;
     float waitTime = 2;
 
     private int steerValue;
     // Start is called before the first frame update
     void Start()
     {
+        transform.GetComponent<Rigidbody>().velocity = transform.forward * speedOfCar;
         if (PlayerPrefs.GetInt(Store.newCarUnlockedKey, 0) == 1)
         {
             GetComponentInChildren<Renderer>().material.SetColor("_Color",Color.blue);
@@ -22,13 +23,24 @@ public class Car : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         transform.Rotate(0f, steerValue * turnSpeed * Time.deltaTime, 0f);
-        transform.Translate(Vector3.forward * speedOfCar * Time.deltaTime);
-        speedOfCar += acceleration * Time.deltaTime;
-    }
+        //transform.Translate(Vector3.forward * speedOfCar * Time.deltaTime);
+        //transform.GetComponent<Rigidbody>().AddTorque(transform.up*steerValue * turnSpeed * Time.deltaTime);
+        //transform.GetComponent<Rigidbody>().AddForce(transform.up * steerValue * turnSpeed * Time.deltaTime);
 
+
+        if (!crushed)
+        {
+            speedOfCar += acceleration * Time.deltaTime;
+            transform.GetComponent<Rigidbody>().velocity = transform.forward * speedOfCar;
+        }
+        
+
+        
+    }
+    
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Obstacle"))
@@ -41,16 +53,23 @@ public class Car : MonoBehaviour
             //speedOfCar = 0f;
             //acceleration = 0f;
         }
+        if (other.CompareTag("Wall"))
+        {
+            
+            StartCoroutine(gameOver());
+        }
        
     }
     private IEnumerator gameOver()
     {
-        
+        FindObjectOfType<Canvas>().transform.Find("WarningText").gameObject.SetActive(true);
+        crushed = true;
         yield return new WaitForSeconds(waitTime);
         SceneManager.LoadScene("Scene_MainMenu");
     }
     public void Steer(int value)
     {
+        Debug.Log(" VAL " + value);
         steerValue = value;//by changing value, it means it turns left and right.
        
     }
