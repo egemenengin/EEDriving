@@ -8,6 +8,8 @@ TagManager:
   - Fuel
   - HighScore
   - Wall
+  - FinishLine
+  - SpawnPoint
   layers:
   - Default
   - TransparentFX

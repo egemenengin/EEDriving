@@ -6,19 +6,32 @@ public class ScoreDisplay : MonoBehaviour
 {
     private TextMeshProUGUI scoreText;
     private float scoreMultiplayer = 1f;
-    private float score = 0;
+    private float score;
 
     public const string HighScoreKey = "HighScore";
-    // Start is called before the first frame update
-    void Start()
+    public const string CurrentScoreKey = "CurrentScore";
+    private const string CurrentDifficulty = "CurrentDifficulty";
+
+    private float diffIncrease=0.5f;
+    private float diffLevel;
+    private void Awake()
     {
-        scoreText = FindObjectOfType<TextMeshProUGUI>();
+        scoreText = GetComponent<TextMeshProUGUI>();
+        score = PlayerPrefs.GetInt(CurrentScoreKey, 0);
+        updateScore();
+        diffLevel = PlayerPrefs.GetFloat(CurrentDifficulty);
     }
+ 
 
     // Update is called once per frame
     void Update()
     {
-        score += Time.deltaTime*scoreMultiplayer;
+        if (FindObjectOfType<Car>().getStopped())
+        {
+        
+            return;
+        }
+        score += Time.deltaTime*scoreMultiplayer + diffLevel*diffIncrease;
         updateScore();
     }
 
@@ -26,12 +39,22 @@ public class ScoreDisplay : MonoBehaviour
     {
         scoreText.text = Mathf.FloorToInt(score).ToString();
     }
+
+    public void setCurScore()
+    {
+        PlayerPrefs.SetInt(CurrentScoreKey, Mathf.FloorToInt(score));
+    }
+
+
     private void OnDestroy()
     {
+      
+        
         int currentHighScore = PlayerPrefs.GetInt(HighScoreKey, 0);
         if(score > currentHighScore)
         {
             PlayerPrefs.SetInt(HighScoreKey, Mathf.FloorToInt(score));
         }
     }
+  
 }

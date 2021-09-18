@@ -15,6 +15,7 @@ public class GameController : MonoBehaviour
 
     public void Awake()
     {
+        setUpSingleton();
         OnApplicationFocus(true);
     }
     public void Start()
@@ -53,6 +54,10 @@ public class GameController : MonoBehaviour
     private void Update()
     {
         string energyReadyString = PlayerPrefs.GetString(EnergyReadyKey, string.Empty);
+        if (energyReadyString.Equals(string.Empty))
+        {
+            return;
+        }
         DateTime energyReady = DateTime.Parse(energyReadyString);
         if (DateTime.Now > energyReady)
         {
@@ -61,6 +66,20 @@ public class GameController : MonoBehaviour
             PlayerPrefs.SetString(EnergyReadyKey, energyReady.ToString());
         }
     }
+
+    private void setUpSingleton()
+    {
+        if (FindObjectsOfType(GetType()).Length > 1)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            DontDestroyOnLoad(gameObject);          
+        }
+    }
+
+
     private void increaseEnergy()
     {
         if (energy < 3)

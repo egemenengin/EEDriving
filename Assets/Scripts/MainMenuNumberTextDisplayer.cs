@@ -29,4 +29,5 @@ public class MainMenuNumberTextDisplayer : MonoBehaviour
             text.text = PlayerPrefs.GetInt(GameController.EnergyKey, 3).ToString();
         }
     }
+  
 }
