@@ -61,6 +61,7 @@ public class Car : MonoBehaviour
 
         if (!stopped)
         {
+        
             transform.Rotate(0f, steerValue * turnSpeed * Time.deltaTime, 0f);
 
             speedOfCar += acceleration * Time.deltaTime;

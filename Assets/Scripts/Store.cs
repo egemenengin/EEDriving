@@ -2,10 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Purchasing;
+using UnityEngine.UI;
+
 public class Store : MonoBehaviour
 {
     private const string newCarID = "com.eegames.eedriving.newcar";
     public const string newCarUnlockedKey = "NewCarUnlocked";
+    GameObject buyButton;
     private readonly string[] carKeys = new string[] { "FirstCar", "SecondCar", "ThirdCar", "FourthCar", "FifthCar" };
 
     [SerializeField] private GameObject Cars;
@@ -25,6 +28,7 @@ public class Store : MonoBehaviour
         }
         currentCarUnlocked = true;
         unlockedImage = GameObject.Find("Canvas").GetComponent<Canvas>().transform.Find("unlockedImage").gameObject;
+        buyButton = GameObject.Find("Canvas").GetComponent<Canvas>().transform.Find("BuyButton").gameObject; ;
         mainCamera = Camera.main;
         currentCar = 0;
     }
@@ -55,13 +59,13 @@ public class Store : MonoBehaviour
                 if (PlayerPrefs.GetInt(carKeys[currentCar + 1], 0) == 1)
                 {
                     unlockedImage.SetActive(true);
-                   
+                    buyButton.transform.GetComponent<Button>().enabled = false;
                     currentCarUnlocked = true;
                 }
                 else
                 {
                     unlockedImage.SetActive(false);
-                   
+                    buyButton.transform.GetComponent<Button>().enabled = true;
                     currentCarUnlocked = false;
                 }
                 currentCar++;
@@ -78,12 +82,13 @@ public class Store : MonoBehaviour
                 if (PlayerPrefs.GetInt(carKeys[currentCar - 1], 0) == 1)
                 {
                     unlockedImage.SetActive(true);
-
+                    buyButton.transform.GetComponent<Button>().enabled = false;
                     currentCarUnlocked = true;
                 }
                 else
                 {
                     unlockedImage.SetActive(false);
+                    buyButton.transform.GetComponent<Button>().enabled = true;
                     currentCarUnlocked = false;
                 }
                 currentCar--;
