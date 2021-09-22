@@ -6,9 +6,9 @@ using TMPro;
 
 public class LevelSelection : MonoBehaviour
 {
-
-    public const string UnlockedLevel = "LastUnlockedLevel";
-    public const string CurrentPlayedLevel = "CurrentLevel";
+   
+    private const string UnlockedLevel = "LastUnlockedLevel";
+    private const string CurrentPlayedLevel = "CurrentLevel";
     private void Awake()
     {
         int unlockedLevel = PlayerPrefs.GetInt(UnlockedLevel, 0);

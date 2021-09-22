@@ -8,12 +8,13 @@ public class Car : MonoBehaviour
     private const string UnlockedLevel = "LastUnlockedLevel";
     private const string CurrentPlayedLevel = "CurrentLevel";
     private const string CurrentDifficulty = "CurrentDifficulty";
+    private const string SelectedCar = "SelectedCar";
 
     [SerializeField] private float speedOfCar = 30f;
     [SerializeField] private float acceleration = 0.25f;
-    [SerializeField] private float turnSpeed = 500f;
+    [SerializeField] private float turnSpeed = 150f;
     [SerializeField] private float diffIncrease = 0.05f;
-
+    [SerializeField] private Material[] materials;
 
     private Rigidbody carRB;
     private bool stopped = false;
@@ -25,8 +26,12 @@ public class Car : MonoBehaviour
 
     private void Awake()
     {
+        if (PlayerPrefs.GetInt(SelectedCar, 0) != 0)
+        {
+            GetComponent<MeshRenderer>().material = materials[PlayerPrefs.GetInt(SelectedCar, 0)];
+        }
         startingPointAndPosition();
-
+        
         float difficulty = PlayerPrefs.GetFloat(CurrentDifficulty);
         acceleration = acceleration + diffIncrease * difficulty;
        
@@ -35,6 +40,7 @@ public class Car : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+       
         carRB = transform.GetComponent<Rigidbody>();
         carRB.velocity = transform.forward * speedOfCar;
         if (PlayerPrefs.GetInt(Store.newCarUnlockedKey, 0) == 1)
@@ -50,12 +56,13 @@ public class Car : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        transform.Rotate(0f, steerValue * turnSpeed * Time.deltaTime, 0f);
-        
+
+
 
         if (!stopped)
         {
-            
+            transform.Rotate(0f, steerValue * turnSpeed * Time.deltaTime, 0f);
+
             speedOfCar += acceleration * Time.deltaTime;
             
             carRB.velocity = new Vector3( transform.forward.x * speedOfCar, carRB.velocity.y, transform.forward.z * speedOfCar);
@@ -65,7 +72,7 @@ public class Car : MonoBehaviour
 
         
     }
-    
+   
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Obstacle"))

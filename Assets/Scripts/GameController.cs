@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
+    private const string firstCarKey = "FirstCar";
     private int maxEnergy = 3;
     private int energyRechargeDuration = 1;
 
@@ -15,6 +16,10 @@ public class GameController : MonoBehaviour
 
     public void Awake()
     {
+        if (PlayerPrefs.GetInt(firstCarKey, 0) == 0)
+        {
+            PlayerPrefs.SetInt(firstCarKey,1);
+        }
         setUpSingleton();
         OnApplicationFocus(true);
     }

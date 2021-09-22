@@ -1,74 +1,61 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Purchasing;
-public class Store : MonoBehaviour
+using UnityEngine.UIElements;
+
+public class InventoryController : MonoBehaviour
 {
-    private const string newCarID = "com.eegames.eedriving.newcar";
-    public const string newCarUnlockedKey = "NewCarUnlocked";
     private readonly string[] carKeys = new string[] { "FirstCar", "SecondCar", "ThirdCar", "FourthCar", "FifthCar" };
+    private const string SelectedCar = "SelectedCar";
 
     [SerializeField] private GameObject Cars;
     [SerializeField] private GameObject CameraLocations;
 
-    static int currentCar;
-    static bool currentCarUnlocked;
-
     GameObject unlockedImage;
     Camera mainCamera;
 
-    private void Awake()
+    static int currentCar;
+    static bool currentCarUnlocked;
+    // Start is called before the first frame update
+    void Start()
     {
-        if(Application.platform != RuntimePlatform.IPhonePlayer)
-        {
-            //restore button set active false
-        }
         currentCarUnlocked = true;
-        unlockedImage = GameObject.Find("Canvas").GetComponent<Canvas>().transform.Find("unlockedImage").gameObject;
+        unlockedImage = GameObject.Find("Canvas").GetComponent<Canvas>().transform.Find("LockedImage").gameObject;
         mainCamera = Camera.main;
         currentCar = 0;
     }
 
-    public void OnPurchaseComplete(Product product)
+    // Update is called once per frame
+    void Update()
     {
-        if (product.definition.id == newCarID )
-        {
-            unlockedImage.SetActive(true);
-            PlayerPrefs.SetInt(carKeys[currentCar], 1);
-        }
-      
+       
     }
-    public void OnPurchaseFailed(Product product, PurchaseFailureReason reason)
-    {
-        Debug.LogWarning("FAILED TO PURCHASE PRODUCT "+ product.definition.id + " because "+ reason);
-    }
-
-
     public void changeCar(int whichSide)
     {
-
-        if (whichSide == 1)
+       
+        if(whichSide == 1)
         {
             //check and go right
             if (currentCar < 4)
             {
-                if (PlayerPrefs.GetInt(carKeys[currentCar + 1], 0) == 1)
+                if (PlayerPrefs.GetInt(carKeys[currentCar+1],0) == 1)
                 {
-                    unlockedImage.SetActive(true);
-                   
+                    unlockedImage.transform.GetChild(0).gameObject.SetActive(false);
+                    unlockedImage.transform.GetChild(1).gameObject.SetActive(false);
                     currentCarUnlocked = true;
                 }
                 else
                 {
-                    unlockedImage.SetActive(false);
-                   
+                    unlockedImage.transform.GetChild(0).gameObject.SetActive(true);
+                    unlockedImage.transform.GetChild(1).gameObject.SetActive(true);
                     currentCarUnlocked = false;
                 }
                 currentCar++;
                 mainCamera.transform.position = CameraLocations.transform.GetChild(currentCar).transform.position;
-
+               
             }
-
+           
         }
         if (whichSide == -1)
         {
@@ -77,20 +64,28 @@ public class Store : MonoBehaviour
             {
                 if (PlayerPrefs.GetInt(carKeys[currentCar - 1], 0) == 1)
                 {
-                    unlockedImage.SetActive(true);
-
+                    unlockedImage.transform.GetChild(0).gameObject.SetActive(false);
+                    unlockedImage.transform.GetChild(1).gameObject.SetActive(false);
                     currentCarUnlocked = true;
                 }
                 else
                 {
-                    unlockedImage.SetActive(false);
+                     unlockedImage.transform.GetChild(0).gameObject.SetActive(true);
+                     unlockedImage.transform.GetChild(1).gameObject.SetActive(true);
                     currentCarUnlocked = false;
                 }
                 currentCar--;
                 mainCamera.transform.position = CameraLocations.transform.GetChild(currentCar).transform.position;
             }
-
+         
         }
     }
-
+    public void selectCar()
+    {
+        if (currentCarUnlocked)
+        {
+            Debug.Log("Selected Car : " + currentCar);
+            PlayerPrefs.SetInt(SelectedCar,currentCar);
+        }
+    }
 }

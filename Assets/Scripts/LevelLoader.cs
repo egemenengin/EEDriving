@@ -8,6 +8,8 @@ public class LevelLoader : MonoBehaviour
     public const string HighScoreKey = "HighScore";
     public const string CurrentScoreKey = "CurrentScore";
     public const string CurrentPlayedLevel= "CurrentLevel";
+    private int usedAd = 0;
+
     public void loadGameplayScene()
     {
         if (FindObjectOfType<GameController>().canPlay())
@@ -86,5 +88,14 @@ public class LevelLoader : MonoBehaviour
 
     }
 
-   
+    //Advertisement
+    public void Continue()
+    {
+        if (usedAd < 3)
+        {
+            FindObjectOfType<AdManager>().ShowAd();
+            usedAd++;
+        }
+
+    }
 }

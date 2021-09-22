@@ -755,7 +755,7 @@ PlayerSettings:
     Purchasing: 1
     UDP: 0
     UNet: 1
-    Unity Ads: 0
+    Unity Ads: 1
   luminIcon:
     m_Name: 
     m_ModelFolderPath: 
@@ -772,7 +772,7 @@ PlayerSettings:
   cloudProjectId: 024f3abe-4f51-473e-bdbb-e1c9ff655dba
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: SimpleDriving
+  projectName: EEDriving
   organizationId: ee-games
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
