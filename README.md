@@ -2,7 +2,7 @@
  Unity Mobile Arcade Driving Game
  
  ## **MAIN MENU**
-![MainMenu](/Images/GameOver.png "MainMenu")
+![MainMenu](/Images/MainMenu.png "MainMenu")
  ## **Level Selection**
 ![LevelSelection](/Images/LevelSelection.png "LevelSelection")
  ## **Inventory**
