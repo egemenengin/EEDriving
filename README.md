@@ -6,11 +6,11 @@
  ## **Level Selection**
 ![LevelSelection](/EEDriving/Images/LevelSelection.png "LevelSelection")
  ## **Inventory**
-![Inventory](/EEDriving/Images/Inventory(UnlockedCar).png "UnlockedCar")![Inventory](/EEDriving/Images/Inventory(LockedCard).png "LockedCar")
+![Inventory](/EEDriving/Images/Inventory(UnlockedCar).png "UnlockedCar")![Inventory2](/EEDriving/Images/Inventory(LockedCard).png "LockedCar")
  ## **Settings**
 ![Settings](/EEDriving/Images/Settings.png "Settings")
  ## **Shop**
-![Shop](/EEDriving/Images/Shop(LockedCar).png "Shop") ![Shop](/EEDriving/Images/Shop(UnlockedCar).png "Shop")
+![Shop](/EEDriving/Images/Shop(LockedCar).png "Shop") ![Shop2](/EEDriving/Images/Shop(UnlockedCar).png "Shop")
  ## **Gameplay**
 ![Gameplay](/EEDriving/Images/Gameplay.png "Gameplay")
  ## **Win**
