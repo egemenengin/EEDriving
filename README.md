@@ -2,18 +2,18 @@
  Unity Mobile Arcade Driving Game
  
  ## **MAIN MENU**
-![MainMenu](/EEDriving/Images/GameOver.png "MainMenu")
+![MainMenu](/Images/GameOver.png "MainMenu")
  ## **Level Selection**
-![LevelSelection](/EEDriving/Images/LevelSelection.png "LevelSelection")
+![LevelSelection](/Images/LevelSelection.png "LevelSelection")
  ## **Inventory**
-![Inventory](/EEDriving/Images/Inventory(UnlockedCar).png "UnlockedCar")![Inventory2](/EEDriving/Images/Inventory(LockedCard).png "LockedCar")
+![Inventory](/Images/Inventory(UnlockedCar).png "UnlockedCar")![Inventory2](/Images/Inventory(LockedCard).png "LockedCar")
  ## **Settings**
 ![Settings](/EEDriving/Images/Settings.png "Settings")
  ## **Shop**
-![Shop](/EEDriving/Images/Shop(LockedCar).png "Shop") ![Shop2](/EEDriving/Images/Shop(UnlockedCar).png "Shop")
+![Shop](/Images/Shop(LockedCar).png "Shop") ![Shop2](/Images/Shop(UnlockedCar).png "Shop")
  ## **Gameplay**
-![Gameplay](/EEDriving/Images/Gameplay.png "Gameplay")
+![Gameplay](/Images/Gameplay.png "Gameplay")
  ## **Win**
-![WinLevel](/EEDriving/Images/WinLevel.png "WinLevel")
+![WinLevel](/Images/WinLevel.png "WinLevel")
  ## **GameOver**
-![GameOver](/EEDriving/Images/GameOver.png "GameOver")
+![GameOver](/Images/GameOver.png "GameOver")
