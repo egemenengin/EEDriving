@@ -10,7 +10,7 @@
  ## **Settings**
 ![Settings](/Images/Settings.png "Settings")
  ## **Shop**
-![ShopNotOwnedCar](/Images/Shop(LockedCar).png "Shop")  ![ShopOwnedCar](/Images/Shop(UnlockedCar).png "Shop")
+![ShopNotOwnedCar](/Images/Shop(LockedCar).png "ShopNotOwnedCar")  ![ShopOwnedCar](/Images/Shop(UnlockedCar).png "ShopOwnedCar")
  ## **Gameplay**
 ![Gameplay](/Images/Gameplay.png "Gameplay")
  ## **Win**
