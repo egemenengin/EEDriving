@@ -6,8 +6,7 @@
  ## **Level Selection**
 ![LevelSelection](/Images/LevelSelection.png "LevelSelection")
  ## **Inventory**
-![InventoryUnlockedCar](/Images/Inventory(UnlockedCar).png "UnlockedCar")
-![InventoryLockedCar](/Images/Inventory(LockedCard).png "LockedCar")
+![InventoryUnlockedCar](/Images/Inventory(UnlockedCar).png "UnlockedCar") ![InventoryLockedCar](/Images/Inventory(LockedCard).png "LockedCar")
  ## **Settings**
 ![Settings](/Images/Settings.png "Settings")
  ## **Shop**
